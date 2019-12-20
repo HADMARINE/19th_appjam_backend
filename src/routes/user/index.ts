@@ -6,6 +6,7 @@ import throwError from '../../lib/throwError';
 import util from 'util';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
+import getRandomArbitrary from '../../lib/getRandomArbitrary';
 
 // const User = require('../../lib/models/User');
 import User, { UserDocument } from '../../models/User';
@@ -76,14 +77,25 @@ router.post('/overlap', async (req, res, next) => {
     if (!type || content === undefined) {
       return throwError('필수 항목이 입력되지 않았습니다.', 400);
     }
-    const typeArray: Array<String> = ['id', 'email'];
+    const typeArray: Array<String> = ['id', 'email', 'phone', 'born'];
 
     if (typeArray.indexOf(type) === -1) {
       return throwError('입력 값이 잘못되었습니다', 400);
     }
 
-    if (type === 'id') {
-      type = 'uid';
+    switch (type) {
+      case 'id':
+        type = 'uid';
+        break;
+      case 'phone':
+        if (content.length !== 13) {
+          return throwError('올바른 전화번호를 입력해주세요.', 400);
+        }
+        break;
+      case 'born':
+        if (content.length > 8) {
+          return throwError('올바른 생년원일을 입력해주세요. (YYYYMMDD)', 400);
+        }
     }
 
     const query: Object = { [type]: content };
@@ -115,10 +127,7 @@ router.post('/data', async (req, res, next) => {
     }
 
     // tslint:disable-next-line: await-promise
-    const user: any = await User.findOne({ uid: tokenValue.userId }).select(
-      'uid name email'
-    );
-
+    const user: any = await User.findOne({ uid: tokenValue.userId });
     if (!user) {
       return throwError('유저가 존재하지 않습니다.', 404);
     }
@@ -129,13 +138,9 @@ router.post('/data', async (req, res, next) => {
   }
 });
 
-function getRandomArbitrary(min: number, max: number) {
-  return Math.random() * (max - min) + min;
-}
-
 router.post('/find/password', async (req, res, next) => {
   try {
-    const { uid, publicip, email } = req.body;
+    const { uid, publicip, email, phone } = req.body;
 
     let user: any;
     try {
