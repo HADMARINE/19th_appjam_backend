@@ -21,6 +21,18 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  phone: {
+    type: String,
+    required: true
+  },
+  birth: {
+    type: String,
+    required: true
+  },
+  data: {
+    type: Array,
+    default: []
+  },
   isAdmin: {
     type: Boolean,
     default: false
@@ -33,6 +45,9 @@ export interface UserDocument extends Document {
   name: string;
   enckey: string;
   email: string;
+  birth: string;
+  phone: string;
+  data: Array<any>;
   isAdmin: boolean;
 }
 
