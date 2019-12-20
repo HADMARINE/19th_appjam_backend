@@ -15,15 +15,16 @@ router.use(bodyParser.json());
 
 router.post('/', async (req, res, next) => {
   try {
-    const { uid, password, name, email } = req.body;
-    if (!uid || !password || !name || !email) {
+    const { uid, password, name, email, phone, birth } = req.body;
+    if (!uid || !password || !name || !email || !phone || !birth) {
       return throwError('필수 항목이 입력되지 않았습니다', 400);
     }
     // tslint:disable-next-line: await-promise
     const duplicateUserVerify: any = await User.findOne().or([
       { uid },
       { name },
-      { email }
+      { email },
+      { phone }
     ]);
     if (duplicateUserVerify) {
       return throwError('이미 존재하는 유저입니다.', 422);
@@ -92,7 +93,7 @@ router.post('/overlap', async (req, res, next) => {
           return throwError('올바른 전화번호를 입력해주세요.', 400);
         }
         break;
-      case 'born':
+      case 'birth':
         if (content.length > 8) {
           return throwError('올바른 생년원일을 입력해주세요. (YYYYMMDD)', 400);
         }
