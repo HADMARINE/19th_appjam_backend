@@ -13,16 +13,4 @@ router.post('/', (req: any, res: any) => {
   res.json(nugu.response);
 });
 
-router.get('/', (req, res) => {
-  nugu.response.output = { test: '접속 성공' };
-  console.log('get');
-  res.json(nugu.response);
-});
-
-router.use('/', (req, res) => {
-  nugu.response.output = { test: '접속 성공' };
-  console.log('use');
-  return res.json(nugu.response);
-});
-
 module.exports = router;
