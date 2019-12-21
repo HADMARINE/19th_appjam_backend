@@ -2,8 +2,8 @@ import express from 'express';
 const router = express.Router();
 
 import bodyParser from 'body-parser';
-import throwError from '../../lib/throwError';
-import nugu from '../../lib/nugu.json';
+import throwError from '../../../lib/throwError';
+import nugu from '../../../lib/nugu.json';
 
 router.use(bodyParser.json());
 
