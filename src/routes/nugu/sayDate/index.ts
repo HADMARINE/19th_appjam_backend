@@ -30,7 +30,7 @@ router.post('/', async (req, res, next) => {
       nugu.response.output = {
         date: `오늘은 ${today.getMonth() +
           1}월 ${today.getDate()}일, ${(Math.floor(passedDate / 100) + 1) *
-          100}일, ${100 -
+          100}일. ${100 -
           Math.ceil(
             passedDate % 100
           )}일전 입니다. 여자친구에게 따뜻한 USB 온열 무릎담요를 선물해보세요. 가격은 28800 원입니다.`
