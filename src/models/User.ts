@@ -25,10 +25,6 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  birth: {
-    type: String,
-    required: true
-  },
   data: {
     type: Array,
     default: []
@@ -37,9 +33,9 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
-  isAdmin: {
-    type: Boolean,
-    default: false
+  engagedDate: {
+    type: Number,
+    required: true
   }
 });
 
@@ -49,11 +45,10 @@ export interface UserDocument extends Document {
   name: string;
   enckey: string;
   email: string;
-  birth: string;
   phone: string;
   data: Array<any>;
   credit: number;
-  isAdmin: boolean;
+  engagedDate: number;
 }
 
 const User: Model<UserDocument> = model('user', userSchema);
