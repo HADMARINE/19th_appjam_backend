@@ -3,15 +3,20 @@ const router = express.Router();
 
 import bodyParser from 'body-parser';
 import throwError from '../../lib/throwError';
+import nugu from '../../lib/nugu.json';
 
 router.use(bodyParser.json());
 
 router.post('/', (req: any, res: any) => {
-  res.json({ test: '접속 성공' });
+  nugu.response.output = { test: '접속 성공' };
+  console.log('post');
+  res.json(nugu.response);
 });
 
 router.get('/', (req, res) => {
-  res.json({ test: '접속성공' });
+  nugu.response.output = { test: '접속 성공' };
+  console.log('get');
+  res.json(nugu.response);
 });
 
 module.exports = router;
