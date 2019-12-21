@@ -33,6 +33,10 @@ const userSchema = new Schema({
     type: Array,
     default: []
   },
+  credit: {
+    type: Number,
+    default: 0
+  },
   isAdmin: {
     type: Boolean,
     default: false
@@ -48,6 +52,7 @@ export interface UserDocument extends Document {
   birth: string;
   phone: string;
   data: Array<any>;
+  credit: number;
   isAdmin: boolean;
 }
 
