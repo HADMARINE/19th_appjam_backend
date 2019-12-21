@@ -47,12 +47,11 @@ router.post('/', async (req, res, next) => {
     }
 
     const user = new User({
-      uid: uid,
+      uid,
       password: key,
-      name: name,
+      name,
       enckey: buf,
-      email: email,
-      data: []
+      email
     });
 
     await user.save();
@@ -163,7 +162,7 @@ router.post('/find/password', async (req, res, next) => {
       code: randomNumber
     };
 
-    const tokenExpireTime: number = 300; //5min
+    const tokenExpireTime: number = 300; // 5min
 
     const jwtSettings: object = {
       expiresIn: tokenExpireTime,
