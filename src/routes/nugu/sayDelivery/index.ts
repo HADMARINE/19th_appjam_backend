@@ -24,8 +24,12 @@ router.post('/', async (req, res, next) => {
 
     const outputProduct = product[randomNumber];
     console.log(outputProduct, '|||', randomNumber);
+
+    const hubs = ['옥천 허브', '곤지암 허브', '판매자', '배송지'];
+    const hubsRandomNumber = getRandomArbitrary(0, hubs.length);
+
     nugu.response.output = {
-      delivery: `현재 배송중인 상품은 ${outputProduct.name} 입니다. 현재 옥천 허브 에 있습니다.`
+      delivery: `현재 배송중인 상품은 ${outputProduct.name} 입니다. 현재 ${hubs[hubsRandomNumber]} 에 있습니다.`
     };
     res.json(nugu.response);
   } catch (error) {
