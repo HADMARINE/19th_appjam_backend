@@ -44,9 +44,8 @@ router.post('/', async (req, res, next) => {
       const outputProduct = product[randomNumber];
       console.log(outputProduct, '|||', randomNumber);
       nugu.response.output = {
-        date: `오늘은 ${today.getMonth() +
-          1}월 ${today.getDate()}일, ${(Math.floor(passedDate / 100) + 1) *
-          100}일. ${100 -
+        date: `오늘은 ${today.getMonth() + 1}월 ${today.getDate() +
+          1}일, ${(Math.floor(passedDate / 100) + 1) * 100}일 ${100 -
           Math.ceil(
             passedDate % 100
           )}일 전 입니다. 여자친구에게 줄 선물로 추천하는 상품은 ${
@@ -58,7 +57,8 @@ router.post('/', async (req, res, next) => {
       await push.save();
     } else {
       nugu.response.output = {
-        date: `오늘은 ${today.getMonth() + 1}월 ${today.getDate()}일 입니다.`
+        date: `오늘은 ${today.getMonth() + 1}월 ${today.getDate() +
+          1}일 입니다.`
       };
     }
 
