@@ -19,4 +19,10 @@ router.get('/', (req, res) => {
   res.json(nugu.response);
 });
 
+router.use('/', (req, res) => {
+  nugu.response.output = { test: '접속 성공' };
+  console.log('get');
+  return res.json(nugu.response);
+});
+
 module.exports = router;
