@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 
 router.use(bodyParser.json());
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const token: any = req.headers['x-access-token'];
     let tokenValue: any;
@@ -18,7 +18,9 @@ router.get('/', (req, res, next) => {
       return throwError('토큰 검증에 실패했습니다.', 403);
     }
 
-    const credit = User.findOne({ uid: tokenValue.userId }).select('credit');
+    const credit = await User.findOne({ uid: tokenValue.userId }).select(
+      'credit'
+    );
 
     res.json({ credit });
 
@@ -30,7 +32,7 @@ router.get('/', (req, res, next) => {
   }
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const token: any = req.headers['x-access-token'];
     const { credit } = req.body;
@@ -42,7 +44,7 @@ router.post('/', (req, res, next) => {
       return throwError('토큰 검증에 실패했습니다.', 403);
     }
 
-    User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { uid: tokenValue.userId },
       {
         $set: {
