@@ -33,7 +33,7 @@ router.post('/', async (req, res, next) => {
           100}일. ${100 -
           Math.ceil(
             passedDate % 100
-          )}일전 입니다. 여자친구에게 따뜻한 USB 온열 무릎담요를 선물해보세요. 가격은 28800 원입니다.`
+          )}일 전 입니다. 여자친구에게 따뜻한 USB 온열 무릎담요를 선물해보세요. 가격은 28800 원입니다.`
       };
 
       const push = new Push({ content: '온열담요' });
