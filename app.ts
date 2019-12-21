@@ -21,11 +21,11 @@ routes.forEach((data: any) => {
 });
 
 // 404 처리 핸들러
-app.use(() => {
-  // throwError를 통한 에러 핸들링 권장.
-  throwError('Page Not found.', 404);
-  console.log();
-});
+// app.use(() => {
+//   // throwError를 통한 에러 핸들링 권장.
+//   throwError('Page Not found.', 404);
+//   console.log();
+// });
 
 app.use(function(req, res, next) {
   const url = req.url;
