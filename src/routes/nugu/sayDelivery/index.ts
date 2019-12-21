@@ -25,7 +25,13 @@ router.post('/', async (req, res, next) => {
     const outputProduct = product[randomNumber];
     console.log(outputProduct, '|||', randomNumber);
 
-    const hubs = ['옥천 허브', '곤지암 허브', '판매자', '배송지'];
+    const hubs = [
+      '옥천 허브',
+      '곤지암 허브',
+      '판매자',
+      '배송지',
+      '부천 웰시네 집'
+    ];
     const hubsRandomNumber = getRandomArbitrary(0, hubs.length);
 
     nugu.response.output = {
