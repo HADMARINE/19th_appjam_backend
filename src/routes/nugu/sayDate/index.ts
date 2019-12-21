@@ -28,8 +28,8 @@ router.post('/', async (req, res, next) => {
     if (1 || (passedDate % 100 >= 94 && passedDate % 100 <= 0)) {
       nugu.response.output = {
         date: `오늘은 ${today.getMonth() +
-          1}월 ${today.getDate()}일, ${(passedDate / 100 + 1) * 100}일 ${100 -
-          (passedDate % 100)}일전 입니다.`
+          1}월 ${today.getDate()}일, ${(Math.floor(passedDate / 100) + 1) *
+          100}일 ${100 - Math.ceil(passedDate % 100)}일전 입니다.`
       };
     } else {
       nugu.response.output = {
