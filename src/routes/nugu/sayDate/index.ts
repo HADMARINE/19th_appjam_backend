@@ -13,7 +13,7 @@ router.post('/', async (req, res, next) => {
   try {
     const testuser: any = await TestUser.findOne({ boyUser: 'test1' });
 
-    if (!testuser) return throwError('테스트 유저 데이터가 없습니다.', 404);
+    // if (!testuser) return throwError('테스트 유저 데이터가 없습니다.', 404);
     console.log(testuser);
 
     const boyUser = await User.findOne({ uid: 'test1' });
