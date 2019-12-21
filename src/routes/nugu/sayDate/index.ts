@@ -45,6 +45,7 @@ router.post('/', async (req, res, next) => {
       console.log(outputProduct, '|||', randomNumber);
       nugu.response.output = {
         date: `오늘은 ${today.getMonth() + 1}월 ${today.getDate() +
+          1 +
           1}일, ${(Math.floor(passedDate / 100) + 1) * 100}일 ${100 -
           Math.ceil(
             passedDate % 100
