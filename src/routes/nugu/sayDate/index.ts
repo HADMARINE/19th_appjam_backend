@@ -24,7 +24,8 @@ router.post('/', async (req, res, next) => {
 
     const today = new Date();
 
-    if (passedDate % 100 >= 94 && passedDate % 100 <= 0) {
+    console.log(passedDate);
+    if (1 || (passedDate % 100 >= 94 && passedDate % 100 <= 0)) {
       nugu.response.output = {
         date: `오늘은 ${today.getMonth() +
           1}월 ${today.getDate()}일, ${(today.getDate() / 100 + 1) *
