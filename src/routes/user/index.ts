@@ -15,8 +15,8 @@ router.use(bodyParser.json());
 
 router.post('/', async (req, res, next) => {
   try {
-    const { uid, password, name, email, phone, birth } = req.body;
-    if (!uid || !password || !name || !email || !phone || !birth) {
+    const { uid, password, name, email, phone, engagedDate } = req.body;
+    if (!uid || !password || !name || !email || !phone || !engagedDate) {
       return throwError('필수 항목이 입력되지 않았습니다', 400);
     }
     // tslint:disable-next-line: await-promise
@@ -51,7 +51,9 @@ router.post('/', async (req, res, next) => {
       password: key,
       name,
       enckey: buf,
-      email
+      email,
+      phone,
+      engagedDate
     });
 
     await user.save();
