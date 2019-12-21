@@ -12,6 +12,10 @@ const productSchema = new Schema({
   price: {
     type: Number,
     required: true
+  },
+  flag: {
+    type: Number,
+    default: 1
   }
 });
 
